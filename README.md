@@ -89,13 +89,18 @@ git clone https://github.com/chungili/claude-skills.git
 
 # Copy the skill to your project
 cp claude-skills/.claude/commands/qmd2revealjs.md your-project/.claude/commands/
+
+# Copy the companion CSS (required for rendering)
+cp claude-skills/custom.css your-project/
 ```
 
-Or install it globally for all projects:
+Or install the skill globally for all projects:
 
 ```bash
 cp claude-skills/.claude/commands/qmd2revealjs.md ~/.claude/commands/
 ```
+
+> `custom.css` must reside in the **same directory as your `.qmd` file** for Quarto to pick it up during rendering. The skill references it via `css: custom.css` in the YAML header.
 
 #### Usage
 
