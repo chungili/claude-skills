@@ -36,9 +36,11 @@ pagination, and overflow handling.
 Before writing a single line, read:
 
 ```
-view /mnt/project/<name>_slides.qmd   # past conversion examples (style reference)
-view /mnt/project/custom.css          # existing CSS — preserve every class
+view <source_dir>/<name>_slides.qmd   # past conversion examples (style reference)
+view <source_dir>/custom.css          # existing CSS — preserve every class
 ```
+
+where `<source_dir>` is the directory containing `$ARGUMENTS`.
 
 Extract from these references:
 - **Pagination granularity** (how much content per slide)
@@ -244,7 +246,7 @@ Before outputting files, verify:
 - [ ] Code chunk options (`label`, `fig-cap`, `echo`, `out-width`) are intact
 - [ ] `bibliography: ref.bib` is in YAML if the source had it
 - [ ] `custom.css` retains `.my-col` and all pre-existing classes
-- [ ] Both files are written to `/mnt/user-data/outputs/` and presented with `present_files`
+- [ ] Both files are written to the same directory as `$ARGUMENTS`
 
 ---
 
