@@ -1,0 +1,74 @@
+# Claude Skills
+
+A collection of custom slash commands for [Claude Code](https://claude.ai/code).
+
+---
+
+## Available Skills
+
+### `/polish-inline` — Academic English Editor
+
+Polishes an academic document **in place** using Git-style inline diff markings, so you can review every change before accepting it.
+
+#### What it does
+
+- Rewrites weak or informal phrasing using academic alternatives
+- Marks every change inline:
+  - `~~original text~~` — content to be removed
+  - **revised text** — the replacement
+- Appends a `## Rationale` table at the end of the file explaining each change
+
+#### Installation
+
+Copy the command file into your project's `.claude/commands/` directory:
+
+```bash
+# Clone this repo
+git clone https://github.com/chungili/claude-skills.git
+
+# Copy the skill to your project
+cp claude-skills/.claude/commands/polish-inline.md your-project/.claude/commands/
+```
+
+Or install it globally for all projects:
+
+```bash
+cp claude-skills/.claude/commands/polish-inline.md ~/.claude/commands/
+```
+
+#### Usage
+
+Inside Claude Code, run:
+
+```
+/polish-inline <filename>
+```
+
+**Example:**
+
+```
+/polish-inline paper.qmd
+```
+
+Claude will read the file, apply inline edits, and append a rationale table like this:
+
+| # | Original | Revised | Reason |
+|---|----------|---------|--------|
+| 1 | The model gets a good result. | The model yields satisfactory performance. | Replace vague verb "gets" with precise academic alternative |
+| 2 | A lot of studies show that... | Numerous studies demonstrate that... | Prohibited pattern removed; vague verb replaced |
+
+#### Academic Standards Applied
+
+| Rule | Example |
+|------|---------|
+| No contractions | `don't` → `do not` |
+| Precise verbs | `get` → `obtain`, `show` → `demonstrate` |
+| No redundant phrases | ~~"it is important to note that"~~ |
+| Formal connectives | `but` → `nevertheless`, `also` → `furthermore` |
+| No prohibited patterns | ~~"A lot of"~~, ~~"Game changer"~~, ~~"In the modern era"~~ |
+
+---
+
+## Adding More Skills
+
+Place any `.md` file in `.claude/commands/` and it becomes a slash command automatically. The filename (without `.md`) is the command name.
