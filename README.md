@@ -113,6 +113,12 @@ Inside Claude Code, run:
 
 Claude will produce `MultipleReg_slides.qmd` and `custom.css` in the same directory.
 
+> **Note:** A ready-to-use `custom.css` is included in this repo. Copy it to your project directory before rendering:
+> ```bash
+> cp claude-skills/custom.css your-project/
+> ```
+> The file defines the slide theme (accent colour `#ffd54a`, code block sizing, callout styles, etc.). `/qmd2revealjs` will preserve all existing classes if the file is already present, or generate a fresh one if it is not.
+
 #### Key Conversion Rules
 
 | Rule | Detail |
