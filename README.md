@@ -69,6 +69,62 @@ Claude will read the file, apply inline edits, and append a rationale table like
 
 ---
 
+### `/qmd2revealjs` — Quarto to RevealJS Slide Converter
+
+Converts a Quarto `.qmd` document (lecture notes, analysis reports, tutorials) into a polished RevealJS slide deck, preserving every word of content.
+
+#### What it does
+
+- Restructures the document into slides following the rule **one concept per slide**
+- Replaces the YAML header with a RevealJS-compatible configuration
+- Handles overflow automatically (prefers `{.smaller}` and slide splits over scroll bars)
+- Produces two output files: `<name>_slides.qmd` and a companion `custom.css`
+- Appends an overflow handling summary as an HTML comment at the end
+
+#### Installation
+
+```bash
+# Clone this repo
+git clone https://github.com/chungili/claude-skills.git
+
+# Copy the skill to your project
+cp claude-skills/.claude/commands/qmd2revealjs.md your-project/.claude/commands/
+```
+
+Or install it globally for all projects:
+
+```bash
+cp claude-skills/.claude/commands/qmd2revealjs.md ~/.claude/commands/
+```
+
+#### Usage
+
+Inside Claude Code, run:
+
+```
+/qmd2revealjs <filename>
+```
+
+**Example:**
+
+```
+/qmd2revealjs MultipleReg.qmd
+```
+
+Claude will produce `MultipleReg_slides.qmd` and `custom.css` in the same directory.
+
+#### Key Conversion Rules
+
+| Rule | Detail |
+|------|--------|
+| Heading mapping | `#` → section title slide, `##` → one slide, `###` → sub-heading within slide |
+| Overflow priority | `{.smaller}` → `.columns` layout → slide split → `{.scrollable}` (last resort) |
+| Math derivations | Every step preserved; 4+ steps split across slides, final result in callout |
+| Code chunks | All chunk options (`label`, `fig-cap`, `echo`) kept intact |
+| Omitted content | Administrative content (edit logs, rationale tables) excluded from slides |
+
+---
+
 ## Adding More Skills
 
 Place any `.md` file in `.claude/commands/` and it becomes a slash command automatically. The filename (without `.md`) is the command name.
